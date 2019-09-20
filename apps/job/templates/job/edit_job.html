@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Add job</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'job/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm green">Hi {{request.session.first_name}}! Let's edit your job</div>
+					<div class="col-sm-2"><a href="/logout">Logout</a></div>
+				</div>
+				{{request.session.message_book}}
+				{% if messages %}
+				<ul class="messages">    
+					{% for message in messages %}    
+					<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+					{% endfor %}
+				</ul>
+				{% endif %}
+
+				<form class="form-horizontal" name="edit_job" action="/job_edit"  method="POST">
+					{% csrf_token %}
+				{% for job in jobs %}
+					<input type="hidden" name="job_id" value="{{job.id}}">
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="title">Title</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="title" placeholder="{{job.title}}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="description">Description</label>
+						<div class="col-sm-12"> 
+							<input type="text" class="form-control" name="description" placeholder="{{job.description}}">
+						</div>
+					</div>
+					<div class="form-group"> 
+						<label class="control-label col-sm-4" for="location">Location</label>
+						<div class="col-sm-12"> 
+							<input type="text" class="form-control" name="location" placeholder="{{job.location}}">
+						</div>
+					</div>
+				{% endfor %}	
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-12">
+							<a class="btn btn-primary" href="/dashboard">Cancel</a>
+							<button type="submit" class="btn btn-primary">Edit Job</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Successful Login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'job/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm green">Welcome {{request.session.first_name}}!</div>
+					<div class="col-sm green"><a href="/jobs/new">NewJob!</a></div>
+					<div class="col-sm"><a href="/logout">Logout</a></div>
+				</div>	
+				
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Title</th>
+							<th scope="col">Description</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for job in jobs %}
+							<tr>
+								<td>{{job.title}}</td>
+								<td>{{job.description}}</td>
+								<td><a href="/jobs/{{job.id}}">View</a> |
+									{% if request.session.userid == job.user.id %}
+									<a href="/remove_job/{{job.id}}">Remove</a> |
+									<a href="/jobs/edit/{{job.id}}">Edit</a> |
+									{% endif %}							
+									<a href="#">Add</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

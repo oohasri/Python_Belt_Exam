@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Successful Login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'job/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm green">Hi {{request.session.first_name}}! These are the job details</div>
+					<div class="col-sm green"><a href="/dashboard">Dashboard</a></div>
+					<div class="col-sm"><a href="/logout">Logout</a></div>
+				</div>
+				{% for job in jobs %}
+					<div class="display_comment">
+						<h4>{{job.title}}</h4>
+						<div class="border">
+							<p>{{job.description}}</p>
+							<p>Location : {{job.location}}</p>
+							<p>Posted by : {{job.user.first_name}}</p>
+							<p>Posted on : {{job.created_at}}</p>
+						</div>
+					</div>
+
+				{% endfor %}	
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function() {
+  			yourFunction(param1, param2);
+		};
+	</script>
+</body>
+</html>

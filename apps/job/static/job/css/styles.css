@@ -1,0 +1,57 @@
+body{
+	padding: 0px;
+	margin: 0px auto;
+}
+form{
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+
+.green{
+	color: green;
+}
+ul{
+	list-style: none;
+	color: red;
+}
+.post_form{
+	margin-top: 10px;
+	display: block;
+	width: 95%;
+}
+.display_posts{
+	padding-left: 40px;
+}
+.display_comment{
+	margin-top: 20px;
+	background-color: #73585840;
+	border-radius: 5px;
+	width: 90%;
+}
+.btn-primary {
+	margin-bottom: 20px;
+}
+.inline{
+	display: inline-block;
+}
+table{
+	width:100%;
+	margin: 20px auto;
+}
+
+table, td, th {
+	border: 1px solid black;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.border{
+	background-color: #cfd8dc;
+}
